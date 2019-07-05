@@ -4,7 +4,7 @@ import boto3
 from message_handlers import MessageScheduler
 from secret_manager import get_secret
 sqs = boto3.resource('sqs')
-queue = sqs.get_queue_by_name(QueueName=get_secret('NYSA_SCHEDULER_SQS_QUEUE'))
+queue = sqs.get_queue_by_name(QueueName=get_secret('NYSA_SCHEDULER_SQS_QUEUE') or 'nysa-scheduler-queue')
 rollbar.init(get_secret('ROLLBAR_KEY'))
 
 
